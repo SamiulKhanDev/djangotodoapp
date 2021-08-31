@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ToDoListBy SAMIUL KHAN</h1>
+    {%  if  user.is_authenticated %}
+    <a href="logout">Log out</a>
+    <p>{{user.username}}</p>
+    <a href="createTask">CreateTask</a>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th></th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{task.title}}</td>
+            <td><a href="task/{{task.id}}">View</a></td>
+        </tr>
+        {% if  task in empty%}
+         <h1>No Task Found</h1>
+        {%endif%}
+        {% endfor%}
+    </table>
+    {% else%}
+    <div>
+        <a href="login">Login</a>
+        <br>
+        <a href="register">if you don't already have an account ,sign up</a>
+    </div>
+    {%endif%}
+</body>
+</html>
